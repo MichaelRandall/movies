@@ -1,20 +1,22 @@
 console.log('Starting app.js for movies');
-//const fs = require('fs');
+const fs = require('fs');
 const _ = require('lodash');
+const yargs = require('yargs');
 
 const movies = require('./movies.js');
 
+const argv = yargs.argv;
 var userInput = process.argv[2];
-console.log('User input: ', userInput);
+
 
 if(userInput === 'add') {
-  console.log('Adding a movie to the list');
+  movies.addMovie(argv.title,argv.description);
 }else if (userInput === 'list') {
-  console.log('Displaying all movies in the list');
-}else if (userInput === 'read') {
-  console.log('Displaying a specific movie from the list');
+  movies.getMovies();
+}else if (userInput === 'view') {
+  movies.getMovie(argv.title);
 }else if (userInput === 'remove'){
-  console.log('Removing a specific movie from the list');
+  movies.removeMovie(argv.title);
 }else{
   console.log('User input not found');
 }
