@@ -1,9 +1,27 @@
 console.log('Starting movies.js for movies');
 
+const fs = require('fs');
+
 var addMovie = (title,description) => {
-  //console.log('You have added a movie');
-  console.log('Adding movie', title, description);
-  //return 'You are adding a movie';
+  var movies = [];
+  var movie = {
+    title,
+    description
+  };
+
+  try{
+    var moviesString = fs.readFileSync('movies-list.json');
+    movies = JSON.parse(moviesString);
+  }catch(error){
+
+  }
+
+  var duplicateMovies = movies.filter((movie) => movie.title === title);
+
+  if(duplicateMovies.length === 0){
+    movies.push(movie);
+    fs.writeFileSync('movies-list.json', JSON.stringify(movies));
+  }
 };
 
 var getMovies = () => {

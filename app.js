@@ -6,7 +6,7 @@ const yargs = require('yargs');
 const movies = require('./movies.js');
 
 const argv = yargs.argv;
-var userInput = process.argv[2];
+var userInput = argv._[0];
 
 
 if(userInput === 'add') {
