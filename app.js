@@ -13,9 +13,7 @@ if(userInput === 'add') {
   var movie = movies.addMovie(argv.title,argv.description);
   if(movie){
     console.log('Movie added');
-    console.log('---');
-    console.log(`Title: ${movie.title}`);
-    console.log(`Description: ${movie.description}`);
+    movies.logMovie(movie);
   }else{
     console.log("A duplicate movie name already exists");
   }
@@ -25,9 +23,7 @@ if(userInput === 'add') {
   var movie = movies.getMovie(argv.title);
   if(movie){
     console.log('Movie found');
-    console.log('---');
-    console.log(`Title: ${movie.title}`);
-    console.log(`Description: ${movie.description}`);
+    movies.logMovie(movie);
   }else{
     console.log('Movie not found');
   }

@@ -49,12 +49,18 @@ var getMovie = (title) => {
   return filteredMovies[0];
 };
 
+var logMovie = (movie) => {
+  console.log('---');
+  console.log(`Title: ${movie.title}`);
+  console.log(`Description: ${movie.description}`);
+}
 
 
-//es6 object property and value are identical
+//in es6 if object property and value are identical, specify as below
 module.exports = {
   addMovie,
   getMovies,
   removeMovie,
-  getMovie
+  getMovie,
+  logMovie
 };
