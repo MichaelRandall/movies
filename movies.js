@@ -44,7 +44,9 @@ var removeMovie = (title) => {
 };
 
 var getMovie = (title) => {
-  console.log('Getting movie with title ' + title);
+  var movies = fetchMovies();
+  var filteredMovies = movies.filter((movie) => movie.title === title);
+  return filteredMovies[0];
 };
 
 

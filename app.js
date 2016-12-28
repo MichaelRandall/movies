@@ -12,14 +12,25 @@ var userInput = argv._[0];
 if(userInput === 'add') {
   var movie = movies.addMovie(argv.title,argv.description);
   if(movie){
-    console.log(`You got the movie title: ${movie.title}. Description: ${movie.description}`);
+    console.log('Movie added');
+    console.log('---');
+    console.log(`Title: ${movie.title}`);
+    console.log(`Description: ${movie.description}`);
   }else{
-    console.log("A duplicate value already exists");
+    console.log("A duplicate movie name already exists");
   }
 }else if (userInput === 'list') {
   movies.getMovies();
 }else if (userInput === 'view') {
-  movies.getMovie(argv.title);
+  var movie = movies.getMovie(argv.title);
+  if(movie){
+    console.log('Movie found');
+    console.log('---');
+    console.log(`Title: ${movie.title}`);
+    console.log(`Description: ${movie.description}`);
+  }else{
+    console.log('Movie not found');
+  }
 }else if (userInput === 'remove'){
   var movieRemoved = movies.removeMovie(argv.title);
   var message = movieRemoved ? 'The movie was removed' : 'The movie was not found';
