@@ -1,11 +1,32 @@
-console.log('Starting app.js for movies');
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
 
 const movies = require('./movies.js');
 
-const argv = yargs.argv;
+const titleOptions = {
+  describe: 'Title of movie',
+  demand: true,
+  alias: 't'
+};
+const argv = yargs
+  .command('add', 'Add a new movie to the list',{
+    title: titleOptions,
+    description: {
+      describe: 'Your thoughts about the movie',
+      demand: true,
+      alias: 'd'
+    }
+  })
+  .command('list', 'View details for all movies in the list')
+  .command('view', 'View details for a specific movie', {
+    title: titleOptions,
+  })
+  .command('remove', 'Remove a specific movie from the list', {
+    title: titleOptions
+  })
+  .help()
+  .argv;
 var userInput = argv._[0];
 
 
@@ -18,7 +39,9 @@ if(userInput === 'add') {
     console.log("A duplicate movie name already exists");
   }
 }else if (userInput === 'list') {
-  movies.getMovies();
+  var moviesList = movies.getMovies();
+  console.log(`The movie list contains ${moviesList.length} titles`);
+  moviesList.forEach((movie) => movies.logMovie(movie));
 }else if (userInput === 'view') {
   var movie = movies.getMovie(argv.title);
   if(movie){

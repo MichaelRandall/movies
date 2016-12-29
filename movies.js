@@ -1,5 +1,3 @@
-console.log('Starting movies.js for movies');
-
 const fs = require('fs');
 
 var fetchMovies = () => {
@@ -31,7 +29,7 @@ var addMovie = (title,description) => {
 };
 
 var getMovies = () => {
-  console.log('Retrieving all movies');
+  return fetchMovies();
 };
 
 var removeMovie = (title) => {
